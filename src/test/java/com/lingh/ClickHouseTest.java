@@ -10,7 +10,7 @@ import org.testcontainers.utility.DockerImageName;
 import java.sql.*;
 import java.time.Duration;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SuppressWarnings({"SqlDialectInspection", "SqlNoDataSourceInspection"})
 public class ClickHouseTest {
@@ -42,7 +42,7 @@ public class ClickHouseTest {
                     """, Statement.NO_GENERATED_KEYS);
             preparedStatement.executeUpdate();
             try (ResultSet resultSet = preparedStatement.getGeneratedKeys()) {
-                assertFalse(resultSet.next());
+                assertTrue(resultSet.next());
             }
             dataSource.close();
         }
